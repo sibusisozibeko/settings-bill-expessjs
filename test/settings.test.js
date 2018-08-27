@@ -5,8 +5,10 @@ describe('The Setting function', function(){
   it('should return an amount of a call when the amount of a is entered', function(){
       var set = Setting();
       set.calculate("call");
-       set.setCall(2.75);
-      assert.equal(set.callCost(), 2.75);
+      set.calculate("call");
+      set.setCall(5.50);
+      set.setCall(5.50);
+      assert.equal(set.callCost(), 5.50);
     });
 
      it('should return an amount of an sms when the amount of a is entered', function(){
