@@ -6,6 +6,7 @@ const Setting = require('./settings-bill');
 const app = express();
 const setting = Setting();
 
+let PORT = process.env.PORT || 3004;
 app.engine('handlebars', exphbs({
   defaultLayout: 'main'
 }));
@@ -94,6 +95,6 @@ app.get('/actions/:actionType', function(req, res) {
   });
 });
 
-app.listen(3004, function() {
-  
+app.listen(PORT, function(err) {
+  console.log("APP starting on port",PORT);
 });
