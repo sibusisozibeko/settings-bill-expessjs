@@ -34,4 +34,8 @@ set.calculate('criticalevel');
 set.setCritical(80);
 assert.equal(set.critical(), 80);
 });
+
+
+
+
 });
