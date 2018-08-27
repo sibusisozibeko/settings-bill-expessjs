@@ -15,8 +15,10 @@ describe('The Setting function', function(){
      it('should return an amount of an sms when the amount of a is entered', function(){
      var set = Setting();
      set.calculate('sms')
-     set.setSms(0.75)
-     assert.equal(set.smsCost(), 0.75);
+     set.calculate('sms')
+     set.setSms(3.50)
+     set.setSms(3.50)
+     assert.equal(set.smsCost(), 3.50);
   });
 
 it('should change a colour if warningLevel is more than zero ', function(){
