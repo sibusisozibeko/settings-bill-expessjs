@@ -2,13 +2,19 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const Setting = require('./settings-bill');
+const moment = require('moment');
 
 const app = express();
 const setting = Setting();
 
 let PORT = process.env.PORT || 3004;
 app.engine('handlebars', exphbs({
-  defaultLayout: 'main'
+  defaultLayout: 'main',
+  helpers: {
+    "timestamp": function(){
+      return moment(this.timestamp).fromNow();
+    }
+  }
 }));
 app.set('view engine', 'handlebars');
 

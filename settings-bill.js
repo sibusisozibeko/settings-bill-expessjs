@@ -41,6 +41,7 @@ module.exports = function Setting() {
        function actions(){
            return actionList;
        }
+      
 
        function actionsFor(type){
            const filteredActions = [];
@@ -60,6 +61,7 @@ module.exports = function Setting() {
            // return actionList.filter((action) => action.type === type);
    }
 
+  
 
 
   function callings() {
