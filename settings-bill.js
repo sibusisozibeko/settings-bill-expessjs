@@ -23,19 +23,28 @@ module.exports = function Setting() {
     // get the value entered in the billType textfie// update the correct total
     if (settingsItemType === "call") {
       callamount += callcost;
-      totalamount += callcost;
+      
+
+    actionList.push({
+      type: settingsItemType,
+      cost: callcost,
+      timestamp: new Date()
+  });
 
     } else if (settingsItemType === "sms") {
       smsamount += smscost;
-      totalamount += smscost;
-    }
-
+     
 
     actionList.push({
-               type: settingsItemType,
-               cost: totalamount,
-               timestamp: new Date()
-           });
+      type: settingsItemType,
+      cost: smscost,
+      timestamp: new Date()
+  });
+    }
+
+    
+
+
        }
 
        function actions(){
@@ -78,9 +87,9 @@ module.exports = function Setting() {
 
 
   function totaling() {
-    return callamount + smsamount;
+    return totalamount= callamount + smsamount;
   }
-
+  
 
   function callupdate(value) {
     if (value != "") {
@@ -149,7 +158,7 @@ module.exports = function Setting() {
     callTotal: callings,
     smsTotal: smsings,
     total: totaling,
-    //bothtotals: totalcallsms,
+    bothtotals: totalcallsms,
 
     // get costs
     callCost: getCostCall,

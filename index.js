@@ -31,7 +31,7 @@ app.get('/', function(req, res) {
   var totals = {
     callTotal: setting.callTotal(),
     smsTotal: setting.smsTotal(),
-    total: setting.total()
+    total: setting.total().toFixed(2)
    
   }
 
