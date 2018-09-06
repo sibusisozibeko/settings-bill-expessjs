@@ -1,20 +1,15 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
-const Setting = require('./settings-bill');
-const moment = require('moment');
+const NamesGreeted = require('./greet');
 
 const app = express();
-const setting = Setting();
+const Greet = NamesGreeted();
 
-let PORT = process.env.PORT || 3004;
+let PORT = process.env.PORT || 9009;
 app.engine('handlebars', exphbs({
   defaultLayout: 'main',
-  helpers: {
-    "timestamp": function(){
-      return moment(this.timestamp).fromNow();
-    }
-  }
+
 }));
 app.set('view engine', 'handlebars');
 
@@ -27,79 +22,36 @@ app.use(bodyParser.json())
 
 
 app.get('/', function(req, res) {
+  let greet = Greet.greetedNames(Greet.returnLanguage(), Greet.returnName());
 
-  var totals = {
-    callTotal: setting.callTotal(),
-    smsTotal: setting.smsTotal(),
-    total: setting.total().toFixed(2)
-   
-  }
+  let count = Greet.countNames();
+  res.render('home', {count:count});
+});
 
-  var settings = {
-    callCost: setting.callCost(),
-    smsCost: setting.smsCost(),
-    warningLevel: setting.warning(),
-    criticalLevel: setting.critical()
-
-  }
-
-  let colour;
-
-    if (setting.total() >= setting.warning()) {
-       colour ='warning';
-    } 
-    if (setting.total() >= setting.critical()) {
-
-       colour = 'danger';
-    }
+app.post('/greetings', function(req, res) {
+ let textarea = req.body.myTextarea;
+ let radio = req.body.radioz;
+let greet = Greet.greetedNames(radio, textarea);
+let count = Greet.countNames();
 
   
+res.render('home',{
+  greet:greet,
+  count:count,
 
-  console.log(setting.warning());
-  //console.log('settings', settings);
-  res.render("home", {
-    totals,
-    settings,
-    colour
-  })
+    
+});
 });
 
-app.post('/settings', function(req, res) {
-  // console.log('body', req.body);
+app.get('/reseting', function(req, res) {
 
-  let smsCost = req.body.smsCost
-
-  setting.setCall(req.body.callCost);
-  setting.setSms(req.body.smsCost);
-  setting.setWarning(req.body.warningLevel);
-  setting.setCritical(req.body.criticalLevel);
-
-
-
-
-  res.redirect('/');
-
+Greet.clearBtn();
+  
+ res.redirect('/');
+ 
 });
 
-app.post('/action', function(req, res) {
-  // console.log(req.body.actionType);
-  setting.calculate(req.body.actionType);
-  res.redirect('/');
 
-});
-
-app.get('/actions', function(req, res) {
-  res.render('actions', {
-    actions: setting.acton()
-  });
-});
-
-app.get('/actions/:actionType', function(req, res) {
-  const actionType = req.params.actionType;
-  res.render('actions', {
-    actions: setting.actfor(actionType)
-  });
-});
 
 app.listen(PORT, function(err) {
   console.log("APP starting on port",PORT);

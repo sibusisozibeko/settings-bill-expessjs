@@ -1,81 +1,43 @@
+<div class="container">
+        <h1>Greetings</h1>
 
-        <div class="container">
-          <div class="row">
+    <div class="row">
+      <div class="count "><span>counter: {{count}}</span></div>
 
-                      <div class="twelve columns box">
-                        <h3>Bill with settings</h3>
-                        <div class="">
-                          Select the call or sms radio button. Update the appropriate total and the overall total when the ADD button in pressed.
-                          <i>Calls costs should now be configurable using the settings section.</i>
-                        </div>
-                        <div class="">
-                          <i>If the total cost exceed the warning level show the total cost in orange, if it exceeds the critical level show
-                            it in red and prevent any new costs from being added. The warning and critical level should both be configurable
-                            now.</i>
-                        </div>
-                        <hr>
-                        <div class="row">
+        <form class="" action="greetings" method="post">
 
-                          <div class="six columns">
-                            <h5>Bill type</h5>
-                            <form action="/action" method="POST">
+        <div class="textareas" name="">
+          <label>Name</label>
+          <input id="myTextarea" name="myTextarea" class="myTextarea"> </input>
 
-                              <label class="">
-                                <input type="radio"  name="actionType" value="call" class="billItemTypeWithSettings">
-                                <span class="label-body">Call</span>
-                              </label>
-                              <label class="">
-                                <input type="radio"  name="actionType" value="sms" class="billItemTypeWithSettings">
-                                <span class="label-body">SMS</span>
-                              </label>
-                              <button class="button-primary" type="submit" name="button">Add</button>
+        </div>
+        <!-- <div class="count">0</div> -->
 
-                            </form>
+        <div class="radioz">
+          <input type="radio" class="radios" name="radioz" value="English" class="radioz" />
+          <label for="y">English</label>
+          <input type="radio" class="radios" name="radioz" value="Afrikaans" class="radioz" />
+          <label for="z">Afrikaans</label>
+          <input type="radio" class="radios" name="radioz" value="IsiXhosa" class="radioz" />
+          <label for="z">IsXhosa</label>
+        </div>
 
-                            <h5>Totals</h5>
-                            <table>
-                              <tr>
-                                <td>
-                                  <a href="/actions/call">Call total</a>
-                                </td>
-                                <td>R
-                                  <span class="callTotalSettings">{{totals.callTotal}}</span>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <a href="/actions/sms">SMS total</a>
-                                </td>
-                                <td>R
-                                  <span class="smsTotalSettings">{{totals.smsTotal}}</span>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <a href="/actions">Total</a>
-                                </td>
-                                <td> R
-                                  <span class="totalSettings {{colour}}{{actions.color}} ">{{totals.total}}</span>
-                                </td>
-                              </tr>
-                            </table>
+        <button type="submit" onclick=""  class="btnGreet button button-primary">Greet</button>
+        </form>
+        
+        <form class="" action="reseting" method="get">
+        <div class="button1 ">
+          <button type="submit" onclick="" class="Reseting button button-primary" value="Reseting" href ="/reset" >Reset</button>
+        </div>
+        </form>
 
-                          </div>
-                          <div class="six columns">
-                            <form class="" action="/settings" method="POST">
-                              <h5>settings</h5>
-                              <label for="exampleEmailInput">Call cost</label>
-                              <input class="u-full-width callCostSetting" type="number" step="any" name="callCost" placeholder="enter callcost" value="{{settings.callCost}}">
-                              <label for="exampleEmailInput">SMS cost</label>
-                              <input class="u-full-width smsCostSetting" type="number" step="any"  name="smsCost" placeholder="enter smscost" value="{{settings.smsCost}}">
-                              <label for="">Warning level</label>
-                              <input class="u-full-width warningLevelSetting " type="number" step="any"  name="warningLevel" placeholder="enter warningLevel" value="{{settings.warningLevel}}">
-                              <label for="">Critical level</label>
-                              <input class="u-full-width criticalLevelSetting" type="number" step="any"  name="criticalLevel" placeholder="enter criticalLevel" value="{{settings.criticalLevel}}">
-                              <button class="button-primary updateSettings" type="submit"step="any"  name="button">Update settings</button>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                  </div>
-    </div>
+        <div>
+          <span>{{greet}}</span>
+        </div>
+  </div>
+</div>
+
+
+
+
+
